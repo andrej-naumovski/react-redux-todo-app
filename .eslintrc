@@ -1,0 +1,13 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["airbnb"],
+  "rules": {
+    "arrow-body-style": ["error", "as-needed"]
+  },
+  "globals": {
+    "__DEV__": false
+  },
+  "env": {
+    "browser": true
+  }
+}
