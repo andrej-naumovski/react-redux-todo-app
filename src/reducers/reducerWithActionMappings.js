@@ -1,4 +1,4 @@
-export const reducerWithActionMappings = (mappings, initialState) => {
+const reducerWithActionMappings = (mappings, initialState) => {
   if (__DEV__ && !initialState) {
     throw new Error('Initial state must be defined!');
   }
@@ -12,3 +12,5 @@ export const reducerWithActionMappings = (mappings, initialState) => {
     return reducer(state, action);
   };
 };
+
+export default reducerWithActionMappings;
