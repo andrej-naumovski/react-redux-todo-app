@@ -7,6 +7,8 @@ import {
   MARK_ALL_COMPLETE,
   DELETE_ALL,
   CHANGE_FILTER_TYPE,
+  MARK_TODO_AS_COMPLETE,
+  DELETE_TODO,
 } from '../../actions/todos';
 
 const mockState = {
@@ -19,7 +21,7 @@ const mockState = {
     {
       id: 2,
       title: 'Test todo 2',
-      state: TodoState.COMPLETED,
+      state: TodoState.IN_PROGRESS,
     },
   ],
   filter: TodoFilterType.ALL,
@@ -94,5 +96,42 @@ describe('TodosReducer', () => {
     });
 
     expect(newState.filter).toEqual(TodoFilterType.COMPLETED);
+  });
+
+  it('should mark todo with given id as completed', () => {
+    const idToModify = 2;
+
+    const newState = todosReducer(mockState, {
+      type: MARK_TODO_AS_COMPLETE,
+      payload: 2,
+    });
+
+    const modifiedTodo = newState.todos[idToModify - 1];
+
+    expect(modifiedTodo.state).toEqual(TodoState.COMPLETED);
+  });
+
+  it('should not modify state if todo with given id does not exist', () => {
+    const idToModify = 6;
+
+    const newState = todosReducer(mockState, {
+      type: MARK_TODO_AS_COMPLETE,
+      payload: idToModify,
+    });
+
+    expect(newState).toEqual(mockState);
+  });
+
+  it('should delete todo with given id', () => {
+    const idToDelete = 2;
+
+    const newState = todosReducer(mockState, {
+      type: DELETE_TODO,
+      payload: idToDelete,
+    });
+
+    expect(newState.todos).toHaveLength(1);
+
+    expect(newState.todos[0].id).toEqual(1);
   });
 });

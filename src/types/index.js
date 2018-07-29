@@ -4,7 +4,7 @@ import { TodoState, TodoFilterType } from '../constants/todos';
 export type State = $Keys<typeof TodoState>;
 
 export type TodoItem = {
-  id?: number,
+  id: number,
   title: string,
   state: State,
   isChecked: boolean,

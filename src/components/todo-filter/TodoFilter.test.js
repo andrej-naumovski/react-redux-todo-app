@@ -7,8 +7,6 @@ import { StyledSelect } from '../styled-input/StyledInput';
 import { TodoFilterType } from '../../constants/todos';
 
 describe('TodoFilter component', () => {
-  console.log(typeof StyledSelect);
-
   it('should call onChange when value is changed', () => {
     let filter = TodoFilterType.ALL;
 
