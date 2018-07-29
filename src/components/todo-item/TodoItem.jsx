@@ -25,6 +25,7 @@ type Props = {
 
 const TodoItem = ({ item }: Props): React.Node => (
   <TodoItemContainer>
+    <input type="checkbox" value={item.isChecked} />
     <span>{item.title}</span>
     <span>{item.state}</span>
     <SubmitButton type="button" disabled={item.state === TodoState.COMPLETED}>

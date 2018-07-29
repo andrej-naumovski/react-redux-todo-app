@@ -1,25 +1,31 @@
 import styled, { css } from 'styled-components';
 import { switchProp } from 'styled-tools';
 
-const ButtonType = {
+const ButtonStyle = {
   SUBMIT: 'submit',
   DELETE: 'delete',
+  DEFAULT: 'default',
 };
 
 const Button = styled.button`
   padding: 5px 7px;
   color: #fff;
-  font-size: 24px;
+  font-size: 16px;
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
-  ${switchProp('type', {
-    [ButtonType.SUBMIT]: css`
+  ${switchProp('look', {
+    [ButtonStyle.SUBMIT]: css`
       background-color: #8bc282;
       border: 1px solid #67b45f;
     `,
-    [ButtonType.DELETE]: css`
+    [ButtonStyle.DELETE]: css`
       background-color: #c28282;
       border: 1px solid #b45f5f;
+    `,
+    [ButtonStyle.DEFAULT]: css`
+      background-color: #8e8e8e;
+      border: 1px solid #383838;
+      color: #383838;
     `,
   })};
 
@@ -29,6 +35,6 @@ const Button = styled.button`
   }
 `;
 
-Button.type = ButtonType;
+Button.look = ButtonStyle;
 
 export default Button;
