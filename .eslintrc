@@ -8,12 +8,14 @@
   ],
   "plugins": ["flowtype"],
   "rules": {
-    "arrow-body-style": ["error", "as-needed"]
+    "arrow-body-style": ["error", "as-needed"],
+    "react/jsx-filename-extension": 0
   },
   "globals": {
     "__DEV__": false
   },
   "env": {
-    "browser": true
+    "browser": true,
+    "jest": true
   }
 }
