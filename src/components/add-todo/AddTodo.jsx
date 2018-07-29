@@ -3,18 +3,13 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import Button from '../button/Button';
+import StyledInput from '../styled-input/StyledInput';
 
 const Container = styled.div`
   display: flex;
   width: 70%;
   margin: 20px 0;
   justify-content: space-between;
-`;
-
-export const StyledInput = styled.input`
-  font-size: 16px;
-  width: 70%;
-  font-family: Roboto, sans-serif;
 `;
 
 type Props = {

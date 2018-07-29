@@ -5,5 +5,5 @@ export const TodoState = {
 
 export const TodoFilterType = {
   ...TodoState,
-  ALL: 'ALL',
+  ALL: 'All',
 };

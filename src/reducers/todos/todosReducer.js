@@ -11,10 +11,8 @@ import {
 
 import { TodoState, TodoFilterType } from '../../constants/todos';
 
-import type { TodoItem } from '../../types';
+import type { TodoItem, TodoFilter } from '../../types';
 import type { Action } from '../../actions/types';
-
-export type TodoFilter = $Keys<typeof TodoFilterType>;
 
 export type TodosState = {
   todos: Array<TodoItem>,

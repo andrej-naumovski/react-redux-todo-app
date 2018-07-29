@@ -1,7 +1,8 @@
 import React from 'react';
 import { mount } from 'enzyme';
 
-import AddTodo, { StyledInput } from './AddTodo';
+import AddTodo from './AddTodo';
+import StyledInput from '../styled-input/StyledInput';
 import Button from '../button/Button';
 
 describe('AddTodo component', () => {

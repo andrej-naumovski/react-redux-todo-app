@@ -4,10 +4,22 @@ import styled from 'styled-components';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+// Components
 import TodoActions from '../todo-actions/TodoActions';
 import AddTodo from '../add-todo/AddTodo';
+import TodoFilter from '../todo-filter/TodoFIlter';
 
+// Constants
+import { TodoFilterType } from '../../constants/todos';
+
+// Actions
 import * as TodoActionCreators from '../../actions/todos';
+
+// Selectors
+import { getTodoFilterType } from '../../selectors/todos/todosSelectors';
+
+// Types
+import type { TodoFilter as TodoFilterFlowtype } from '../../types';
 
 const ContentContainer = styled.div`
   display: flex;
@@ -21,6 +33,8 @@ type Props = {
   addTodo: string => void,
   deleteAllTodos: () => void,
   markAllTodosComplete: () => void,
+  changeTodoFilterType: any => void,
+  filter: TodoFilterFlowtype,
 };
 
 type State = {
@@ -72,8 +86,15 @@ class TodoContent extends React.Component<Props, State> {
     });
   };
 
+  onFilterTypeChange = event => {
+    const { changeTodoFilterType } = this.props;
+
+    changeTodoFilterType(event.target.value);
+  };
+
   render() {
     const { newTodoTitle, addNewTodoMode } = this.state;
+    const { filter } = this.props;
     return (
       <ContentContainer>
         <TodoActions
@@ -89,10 +110,19 @@ class TodoContent extends React.Component<Props, State> {
             onClose={this.onCancelNewTodo}
           />
         )}
+        <TodoFilter
+          filter={filter}
+          filterValues={[...Object.values(TodoFilterType)]}
+          onChange={this.onFilterTypeChange}
+        />
       </ContentContainer>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  filter: getTodoFilterType(state),
+});
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
@@ -103,6 +133,6 @@ const mapDispatchToProps = dispatch =>
   );
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(TodoContent);
