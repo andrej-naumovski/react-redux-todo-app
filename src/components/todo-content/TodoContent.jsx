@@ -1,9 +1,13 @@
 // @flow
 import * as React from 'react';
 import styled from 'styled-components';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 import TodoActions from '../todo-actions/TodoActions';
 import AddTodo from '../add-todo/AddTodo';
+
+import * as TodoActionCreators from '../../actions/todos';
 
 const ContentContainer = styled.div`
   display: flex;
@@ -13,12 +17,18 @@ const ContentContainer = styled.div`
   margin: 10px auto;
 `;
 
+type Props = {
+  addTodo: string => void,
+  deleteAllTodos: () => void,
+  markAllTodosComplete: () => void,
+};
+
 type State = {
   newTodoTitle: string,
   addNewTodoMode: boolean,
 };
 
-class TodoContent extends React.Component<*, State> {
+class TodoContent extends React.Component<Props, State> {
   state = {
     newTodoTitle: '',
     addNewTodoMode: false,
@@ -31,17 +41,28 @@ class TodoContent extends React.Component<*, State> {
   };
 
   onMarkAllComplete = () => {
-    console.log('Mark all complete clicked');
+    const { markAllTodosComplete } = this.props;
+
+    markAllTodosComplete();
   };
 
   onDeleteAll = () => {
-    console.log('Delete all clicked');
+    const { deleteAllTodos } = this.props;
+
+    deleteAllTodos();
   };
 
   onNewTodoValueChange = (event: any) => {
     this.setState({
       newTodoTitle: event.target.value,
     });
+  };
+
+  onSaveTodo = () => {
+    const { addTodo } = this.props;
+    const { newTodoTitle } = this.state;
+
+    addTodo(newTodoTitle);
   };
 
   onCancelNewTodo = () => {
@@ -64,7 +85,7 @@ class TodoContent extends React.Component<*, State> {
           <AddTodo
             value={newTodoTitle}
             onChange={this.onNewTodoValueChange}
-            onSave={() => {}}
+            onSave={this.onSaveTodo}
             onClose={this.onCancelNewTodo}
           />
         )}
@@ -73,4 +94,15 @@ class TodoContent extends React.Component<*, State> {
   }
 }
 
-export default TodoContent;
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      ...TodoActionCreators,
+    },
+    dispatch
+  );
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(TodoContent);

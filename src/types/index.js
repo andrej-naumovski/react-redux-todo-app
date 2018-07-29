@@ -1,5 +1,5 @@
 // @flow
-import { TodoState } from '../constants/todos';
+import { TodoState, TodoFilterType } from '../constants/todos';
 
 export type State = $Keys<typeof TodoState>;
 
@@ -11,3 +11,5 @@ export type TodoItem = {
 };
 
 export type TodoItems = Array<TodoItem>;
+
+export type TodoFilter = $Keys<typeof TodoFilterType>;
