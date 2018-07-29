@@ -26,12 +26,11 @@ injectGlobal`
     margin: 0;
     padding: 0;
     font-family: 'Roboto Condensed', sans-serif;
-    font-weight: 300 !important;
+    background-color: #efede6;
   }
 `;
 /* eslint-enable */
 
-/* eslint-disable react/jsx-filename-extension */
 ReactDOM.render(
   <Provider store={store}>
     <App />
