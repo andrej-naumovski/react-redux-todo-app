@@ -11,7 +11,7 @@ const Container = styled.div`
   justify-content: space-between;
 `;
 
-const StyledInput = styled.input`
+export const StyledInput = styled.input`
   font-size: 16px;
   width: 70%;
   font-family: Roboto, sans-serif;
