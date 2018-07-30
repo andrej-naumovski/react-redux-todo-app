@@ -13,7 +13,7 @@ describe('Header component', () => {
 
   it('should render with default title without title prop', () => {
     const wrapper = mount(<Header />);
-    const heading = wrapper.find(Header);
+    const heading = wrapper.find(Heading);
     expect(heading).toHaveLength(1);
     expect(heading.text()).toEqual('Placeholder title');
   });
